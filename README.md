@@ -15,4 +15,5 @@ java -Xmx6g -Xms6g -XX:NewRatio=3
 
 
 3) Process as required with ProcessArabicCorpora (Romanize, tokenize, and add lemmas as needed)
+
 4) Run Google's w2vec on resulting corpus
