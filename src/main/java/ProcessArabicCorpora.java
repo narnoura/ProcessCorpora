@@ -32,6 +32,15 @@ public class ProcessArabicCorpora {
             else if (args[i].startsWith("madafile=")) {
                 mada_file = args[i].substring("madafile=".length());
             }
+            /*
+            else if lemmatize
+
+            else if tok
+
+            else if pos
+
+            else if convertbw
+             */
         }
         String output = file + ".processed";
         ProcessArabicCorpora ArabicProcessor = new ProcessArabicCorpora();
@@ -48,7 +57,7 @@ public class ProcessArabicCorpora {
             System.out.println("Reading Madamira output");
 
             // Read mada file
-            List<List<Token>> mada_tokens = ArabicProcessor.ReadMadaFile(mada_file, skipempty);
+            List<List<Token>> mada_tokens = ReadMadaFile(mada_file, skipempty);
 
             // If extra tokens need to be added to the output file
             if (process_options.get("tok")) {
