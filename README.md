@@ -14,6 +14,15 @@ java -Xmx6g -Xms6g -XX:NewRatio=3
 -rawoutdir word2vec/data/madamira
 
 
-3) Process as required with ProcessArabicCorpora (Romanize, tokenize, and add lemmas as needed)
+3) Process as required with ProcessArabicCorpora:
+
+-romanize to convert a utf8 text to Arabic Buckwalter representation
+
+-tokfile=<tokfile> to specify text with any tokenization (this is the file that will be romanized)
+
+-lemmatize to extract lemmas from Madamira
+
+-madafile=<madafile> (a .mada file from which lemmas are extracted)
+
 
 4) Run Google's word2vec on resulting corpus
