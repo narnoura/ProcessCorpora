@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: /Users/noura/Documents/sentiment-analysis-phd/code/Process
+ Corpora
+Main-Class: ProcessArabicCorpora
+

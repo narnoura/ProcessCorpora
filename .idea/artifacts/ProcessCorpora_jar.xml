@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ProcessCorpora:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ProcessCorpora_jar</output-path>
+    <root id="archive" name="ProcessCorpora.jar">
+      <element id="module-output" name="ProcessCorpora" />
+    </root>
+  </artifact>
+</component>
