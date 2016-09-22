@@ -40,6 +40,7 @@ public class ProcessArabicCorpora {
             }
             else if (args[i].startsWith("madafile=")) {
                 mada_file = args[i].substring("madafile=".length());
+                System.out.println("mada file:" + mada_file);
             }
             else if (args[i].startsWith("-romanize")) {
                 process_options.put("convertBW", true);
@@ -79,24 +80,40 @@ public class ProcessArabicCorpora {
                 String output_line = "";
                 System.out.println("Adding tokens");
                 for (int i=0; i<lines.size(); i++) {
-                    System.out.println(i);
+                    //System.out.println(i);
                     String line = lines.get(i);
                     String mada_line = mada_lines.get(i);
-                    String[] words = line.split(" ");
-                    String[] lemmas = mada_line.split(" ");
+                    //System.out.println("mada_line:"+mada_line);
+                    //System.out.println("line:"+line);
+                    String[] words = line.split("\\s+");
+                    String[] lemmas = mada_line.split("\\s+");
                     int lem = 0;
+
                     for (String word: words ) {
                         // collect extra tokens
                         if (word.contains("+")) {
                             output_line += word + " ";
+                            //System.out.println("token:"+word);
                         } else {
-                            output_line += lemmas[lem] + " ";
-                            lem += 1;
+                            if (lem != lemmas.length) {
+                                output_line += lemmas[lem] + " ";
+                                //System.out.println("lem:" + lem);
+                                //System.out.println("lemma:" + lemmas[lem]);
+                                lem += 1;
+                            } else {
+                                //System.out.println("Finished reading this lemma line");
+                            }
                         }
                     }
+                    //System.out.println("\n");
                     output_line = output_line.trim();
                     output_lines.add(output_line);
                     output_line = "";
+                    //ArabicProcessor.WriteToFile(output_lines,output);
+
+                    /*if (i==1) {
+                        System.exit(0);
+                    }*/
                 }
 
             } else{
@@ -115,6 +132,7 @@ public class ProcessArabicCorpora {
                 lines = ArabicProcessor.GetOutput(mada_tokens,process_options.get("lemmatize"),
                         process_options.get("pos"));
             }*/
+
         }
         // Write to file for input to word2vec
         System.out.println("Writing to output");
@@ -227,7 +245,6 @@ public class ProcessArabicCorpora {
     }
 
     public static List<String> ReadMadaLemmas (String file_path, boolean skipempty) {
-
         System.out.println("Reading mada lemmas");
         //List<String> mada_lines = util.FileReader.ReadFile(file_path,"bw", skipempty);
 
@@ -265,6 +282,8 @@ public class ProcessArabicCorpora {
                 else if (line.startsWith("SENTENCE BREAK")) {
                     output_line = output_line.trim();
                     output.add(output_line);
+                    //System.out.println("Adding mada line:" + output_line); // this line doesn't print. check.
+                    // maybe add in SENTENCE
                 }
             } // end for
         } // end try
